@@ -1,9 +1,4 @@
-# ======================================================================
-# File: Party Log — Warkanius.yaml
-# Purpose: Player save file (authoritative). Overwrite this file with
-#          each new snapshot I generate after changes.
-# Last Updated: 2025-08-29T00:00:00Z
-# ======================================================================
+# Reminder: This Elementalist Record must be stored locally AND shared with Warkanius (the Canon Keeper) to keep the Elementals universe up to date.
 
 meta:
   game: "Elementals: Collecting the Experience of Life"
@@ -14,12 +9,12 @@ meta:
 player_profile_display:
   username: "Warkanius"
   elementia:
-    basic: 71
+    basic: 75
     greater: 15
-  evolution_watch:     # auto-derived: 3 closest (excluding Adults)
-    - "Nocturvul — 235"
+  evolution_watch:     # 3 closest (excluding Adults)
+    - "Cadiquill — 250"
+    - "Nocturvul — 240"
     - "Stormglyph — 105"
-    - "Shardling — 45"
   highest_accord:
     species: "Aviorra"
     count: 2
@@ -27,10 +22,10 @@ player_profile_display:
 player_data_full:
   username: "Warkanius"
   elementia:
-    basic: 71
+    basic: 75
     greater: 15
   resonance_scores:
-    Nocturvul: 235
+    Nocturvul: 240
     Nyxthra: 45
     Onga: 105
     Shardling: 45
@@ -38,7 +33,7 @@ player_data_full:
     Denerva: 45
     Sanctaur: 45
     Mistpix: 45
-    Cadiquill: 245
+    Cadiquill: 250
     Blazearis: 45
   resonance_accord:
     Shockowl: 2
@@ -61,10 +56,10 @@ player_data_full:
     Aviorra: 2
     Sapkit: 2
     Mindove: 2
+    Psysprout: 1
+    Psylinx: 1
 
 roster:
- Player: Warkanius
-Roster:
   - 🌑 Nocturvul — Dark
     IV: 🌟 ★★★★ (Apex)
     Maturity: Teen
@@ -348,28 +343,14 @@ Roster:
     Moves:
       - ⛰️ Mud Slap — *flings mud to hinder foe’s accuracy*
       - ⛰️ Pebble Toss — *small rock strike*
-      - ⛰️ Burrow Down — *briefly hides underground to avoid attack*
-      - ⛰️ Dust Cloud — *kicks up dirt to obscure vision*
-
-  - 🧚 Icia — Fairy
-    IV: ★★★☆ (3-Star)
-    Maturity: Adult
-    Rarity: Legendary
-    Archetype: Moon Spirit (ethereal, mystical, radiates lunar power)
-    Moves:
-      - 🧚 Moonveil — *silvery lunar aura heals and shields allies*
-      - 🧚 Crescent Ray — *focused beam of moonlight strikes with precision*
-      - 🧚 Lunar Tide — *summons a wave of celestial energy, overwhelming foes*
-      - 🧚 Spirit Eclipse — *rare, powerful move that dims the battlefield in moonshadow*
-
-  - 💧 Aqualope — Water
+      - ⛰️
+  - 🌀🌿 Psysprout — Psychic/Life
     IV: ★★☆☆ (2-Star)
-    Maturity: Teen
-    Rarity: Rare
-    Archetype: Wave Charger (nimble, fast-charging water attacker)
+    Maturity: Baby
+    Rarity: Common
+    Archetype: Strategist (balanced, resonance/utility leaning)
     Moves:
-      - 💧 Aqua Horn — *horn-first rushing strike powered by water*
-      - 💧 Tide Dash — *quick dash cloaked in water spray*
-      - 💧 Hydro Kick — *rear legs kick with surging splash*
-      - 💧 Flow Guard — *watery barrier reduces incoming damage*
-
+      - 🌀 Mind Spore — mental seeds disrupt foe’s focus
+      - 🌿 Bloom Pulse — floral energy burst
+      - 🌀 Psybeam — psychic ray that deals solid damage
+      - 🌿 Sprout Shield — defensive shield from sprouting vines
