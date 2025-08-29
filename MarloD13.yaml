@@ -113,14 +113,14 @@ roster:
       - "♟️ Wild Bite — chaotic gnash"
       - "♟️ Reality Flicker — can confuse foes"
 
-  - name: "Spriggan"
-    typing: ["Earth","Life"]
+  - name: "Spriggle"
+    typing: ["Flying","Life"]
     iv: "★★☆☆ (2-Star)"
     maturity: "Baby"
     rarity: "Common"
-    archetype: "Rooted Guardian (defensive, draws strength from the soil)"
+    archetype: "Winged Guardian (defensive, draws strength from nature)"
     moves:
-      - "⛰️ Pebble Bash — tosses small stones"
+      - "🕊 Nose Dive — quick flying attack with chance for multi hit"
       - "🌱 Root Bind — tangles foe with sprouting roots"
-      - "⛰️ Harden Carapace — boosts defense with earthen shell"
+      - "🕊 Wing Whirl - uses wings to create a whirlwind that sends the enemy skyward"
       - "🌱 Verdant Pulse — life energy burst, weak healing"
