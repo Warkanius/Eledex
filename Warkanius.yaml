@@ -1,0 +1,251 @@
+# ======================================================================
+# File: Party Log — Warkanius.yaml
+# Purpose: Player save file (authoritative). Overwrite this file with
+#          each new snapshot I generate after changes.
+# Last Updated: 2025-08-29T00:00:00Z
+# ======================================================================
+
+meta:
+  game: "Elementals: Collecting the Experience of Life"
+  version: 1.0
+  player: "Warkanius"
+  canon_reference_file: "Eledex Master File"
+
+player_profile_display:
+  username: "Warkanius"
+  elementia:
+    basic: 71
+    greater: 15
+  evolution_watch:     # auto-derived: 3 closest (excluding Adults)
+    - "Nocturvul — 235"
+    - "Stormglyph — 105"
+    - "Shardling — 45"
+  highest_accord:
+    species: "Aviorra"
+    count: 2
+
+player_data_full:
+  username: "Warkanius"
+  elementia:
+    basic: 71
+    greater: 15
+  resonance_scores:
+    Nocturvul: 235
+    Nyxthra: 45
+    Onga: 105
+    Shardling: 45
+    Stormglyph: 105
+    Denerva: 45
+    Sanctaur: 45
+    Mistpix: 45
+    Cadiquill: 245
+    Blazearis: 45
+  resonance_accord:
+    Shockowl: 2
+    Nyxthra: 1
+    Ulrich: 1
+    Cryobat: 1
+    Seeraph: 1
+    Onga: 1
+    Shardling: 1
+    Mistpix: 2
+    Orbkit: 1
+    Gloomtail: 1
+    Umbrat: 1
+    Nightkit: 1
+    Cadiquill: 1
+    Sanctaur: 1
+    Umbranite: 1
+    Blazearis: 1
+    Gladiroll: 1
+    Aviorra: 2
+    Sapkit: 2
+    Mindove: 2
+
+roster:
+  - name: "Nocturvul"
+    typing: ["Dark"]
+    iv: "🌟 ★★★★ (Apex)"
+    maturity: "Teen"
+    rarity: "Rare"
+    archetype: "Shadow Predator (speedy, ambusher with burst offense)"
+    moves:
+      - "🌑 Abyss Fang — dark empowered bite"
+      - "🌑 Shadow Step — sudden evasive movement"
+      - "🌑 Dread Howl — reduces foe’s resonance"
+      - "🌑 Night Slash — quick critical strike"
+
+  - name: "Mistpix"
+    typing: ["Mystic"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Elusive Trickster (specializes in dodging + resonance tricks)"
+    moves:
+      - "🔮 Mystic Pulse — core mystic attack"
+      - "🔮 Phantasmal Gleam — flashy illusory strike"
+      - "🔮 Flicker Veil — evasive dodge move"
+      - "🔮 Rune Toss — trickster’s attack glyph"
+
+  - name: "Orbkit"
+    typing: ["Mystic"]
+    iv: "★★☆☆ (2-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Resonant Familiar (weaker baseline, resonance scaling)"
+    moves:
+      - "🔮 Orb Spark — tiny mystic flare"
+      - "🔮 Mirror Charm — reflects small effects"
+      - "🔮 Echo Pulse — resonant ripple"
+      - "🔮 Mystic Bond — buff to allies"
+
+  - name: "Gloomtail"
+    typing: ["Chaos"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Unstable Striker (swingy, random damage spikes)"
+    moves:
+      - "♟️ Chaos Lash — randomly strong tail strike"
+      - "♟️ Instability Surge — sudden random boost"
+      - "♟️ Wild Bite — chaotic gnash"
+      - "♟️ Reality Flicker — can confuse foes"
+
+  - name: "Shardling"
+    typing: ["Rock","Ice"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Sturdy Bruiser (slow, hard-hitting, resists attrition)"
+    moves:
+      - "🪨 Rock Shard — jagged stone strike"
+      - "❄️ Ice Grip — frozen smash"
+      - "🪨 Frost Boulder — heavy rolling strike"
+      - "❄️ Chill Guard — boosts endurance"
+
+  - name: "Stormglyph"
+    typing: ["Electric","Mystic"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Teen"
+    rarity: "Rare"
+    archetype: "Runeseer of Storms (caster archetype; balances lightning burst with rune-based resonance)"
+    moves:
+      - "⚡ Thunder Glyph — etched rune crackles with electric energy, releasing a lightning strike"
+      - "🔮 Mystic Burst — powerful magical blast that harnesses mystical aura"
+      - "⚡ Arc Volley — rapid burst of smaller lightning bolts"
+      - "🔮 Resonant Storm — mystic storm field that boosts resonance power"
+
+  - name: "Nyxthra"
+    typing: ["Chaos"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Adult"
+    rarity: "Rare"
+    archetype: "Corrupted Predator (rare chaos power spikes, pressure fighter)"
+    moves:
+      - "♟️ Night Rend — corruptive slash"
+      - "♟️ Abyss Surge — burst of unstable energy"
+      - "♟️ Dusk Cloak — shadows conceal presence"
+      - "♟️ Chaos Crush — heavy finishing move"
+
+  - name: "Onga"
+    typing: ["Chaos"]
+    iv: "🌟 ★★★★ (Apex)"
+    maturity: "Adult"
+    rarity: "Legendary"
+    archetype: "World-Breaker (Legendary titan, overwhelming offense)"
+    moves:
+      - "♟️ Abyssal Rend — legendary chaotic rift attack"
+      - "♟️ Dread Nova — explosive burst of destruction"
+      - "♟️ Collapse Step — shakes battlefield"
+      - "♟️ World Shatter — devastating final strike"
+
+  - name: "Umbrat"
+    typing: ["Chaos"]
+    iv: "★★☆☆ (2-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Chaotic Trickster (fragile, status effects, disruption)"
+    moves:
+      - "♟️ Dark Joke — confuses foe unpredictably"
+      - "♟️ Pestering Swipe — minor scratch"
+      - "♟️ Chaos Spores — debilitating cloud"
+      - "♟️ Trick Shift — forces awkward moves"
+
+  - name: "Seeraph"
+    typing: ["Mystic","Light"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Adult"
+    rarity: "Rare"
+    archetype: "Celestial Sage (balanced, utility + mid offense)"
+    moves:
+      - "🔮 Sigil Beam — mystic beam of power"
+      - "🌞 Radiant Glow — heals and buffs allies"
+      - "🔮 Resonant Circle — creates zone of mystic energy"
+      - "🌞 Sunveil — light shield that weakens dark foes"
+
+  - name: "Ulrich"
+    typing: ["Mental","Mystic"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Adult"
+    rarity: "Legendary"
+    archetype: "Ancient Tactician (control archetype, slower but calculated)"
+    moves:
+      - "⏳ Timelock — delays enemy move"
+      - "🔮 Mystic Bind — resonant hold"
+      - "⏳ Chrono Cut — cuts through time"
+      - "🔮 Cosmic Seal — barrier of mystic light"
+
+  - name: "Cryobat"
+    typing: ["Ice","Dark"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Baby"
+    rarity: "Rare"
+    archetype: "Frozen Stalker (fast, fragile, nasty offense)"
+    moves:
+      - "❄️ Frost Fang — sharp icy bite"
+      - "🌑 Night Wing — dark swoop strike"
+      - "❄️ Chill Veil — conceals in mist"
+      - "🌑 Shadow Grasp — drains resonance"
+
+  - name: "Cadiquill"
+    typing: ["Flying","Fire"]
+    iv: "★★☆☆ (2-Star)"
+    maturity: "Teen"
+    rarity: "Rare"
+    archetype: "Aerial Duelist (offense = defense, balanced, fast)"
+    moves:
+      - "🕊️ Scorch Dive — fiery dive attack"
+      - "🔥 Ember Burst — flame pulse attack"
+      - "🕊️ Wing Cut — sharp air slash"
+      - "🔥 Blaze Veil — protective flame cloak"
+
+  - name: "Sanctaur"
+    typing: ["Light","Mystic"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Adult"
+    rarity: "Rare"
+    archetype: "Holy Guardian (balanced, tankier than Seeraph, protective utility)"
+    moves:
+      - "🌞 Beacon Step — guiding light, buffs allies"
+      - "🔮 Runeblast — mystic force attack"
+      - "🌞 Golden Charge — ram infused with radiant energy"
+      - "🔮 Mystic Ward — defensive ward"
+
+  - name: "Denerva"
+    typing: ["Mystic","Chaos"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Adult"
+    rarity: "Rare"
+    archetype: "Void Phantom (chaotic controller, disruptive resonance)"
+    moves:
+      - "🔮 Fractured Grasp — disrupts resonance violently"
+      - "♟️ Abyss Fang — chaos-imbued bite"
+      - "🔮 Phantom Pulse — ethereal energy wave"
+      - "♟️ Rift Fade — slips into void to evade"
+
+  - name: "Blazearis"
+    typing: ["Fire","Fighting"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Adult"
+    rarity: "Rare"
+    archetype: "Inferno

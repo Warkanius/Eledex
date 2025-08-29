@@ -1,0 +1,957 @@
+Eledex:
+  version: 1.0
+  canon: true
+  locked: true
+  notes:
+    - "This Eledex is the holy grail ruleset. Always keep as a single code block."
+    - "Elementarium (roster) is included at the bottom—this is the only canon list until we expand together."
+    - "Earth in the roster corresponds to Ground in type matchups."
+    - "The player(s) collects powerful creatures called Elementals which the player(s) can capture using Elementias."
+
+# --- Eledex Patch v1.5 (Starter Pool) ---
+
+starter_pool:
+  description: "At the beginning of a new quest, each player chooses one starter. All starters begin as 🌟 Apex (★★★★) by rule."
+  options:
+    - 🌱 Budbun — Life
+    - 🔥 Cindpup — Fire
+    - 💧 Dripfin — Water
+    - 🪨 Shardling — Rock/Ice
+    - 🕊️ Puffjay — Flying
+    - ⚡ Zirrel — Electric
+    - 🌑 Nightkit — Dark
+    - 🔮 Mistpix — Mystic
+    - 🌀 Mindove — Psychic
+    - 🐾 Cubusk — Primal
+    - ☠️ Venipup — Poison
+    - 🐛 Grubbit — Bug
+    - ⏳ Hourgoyle — Mental
+
+rules:
+  - "Starters always appraise as 🌟 Apex regardless of capture."
+  - "Starter selection is permanent, but multiple players may choose the same species in different games."
+  - "Wild encounters of starter species roll random IVs as normal."
+  iv_power_system:
+    stars:
+      - "★☆☆☆ (1-Star)"
+      - "★★☆☆ (2-Star)"
+      - "★★★☆ (3-Star)"
+      - "★★★★ (4-Star) = 🌟 Apex"
+    apex_definition: "Any 4-Star elemental (★★★★)."
+    starters_rule: "Every starter chosen at the beginning of a new game is 🌟 Apex (★★★★). Wild encounters of those species roll random IVs."
+    resonance_accord: "➰ The 10th capture of the same species is guaranteed 🌟 Apex."
+    iv_persistence: "IV star rating never changes when evolving."
+
+  encounters:
+    triggers:
+      - "Completing real tasks triggers encounters."
+      - "Chaos encounters: only from chaos-type tasks or unexpected obstacles."
+    flow:
+      - "Weaken the foe."
+      - "Throw Elementia."
+      - "On success → immediate appraisal → choose Keep or Release."
+    rewards:
+      keep: "Adds the elemental to your collection; random Elementia (Basic/Greater)."
+      release: "Grants a larger Elementia reward."
+      
+# --- Eledex Patch v1.6 (Rare 1-Hit KO Window, d10 Version) ---
+battle_system:
+  damage_caps:
+    normal_action_cap: "75% max HP per single action."
+    round_cap: "90% total HP lost in a round (direct + residual)."
+  lethal_blow_exception:
+    purpose: "Allow dramatic, rare 1-hit KOs when everything lines up."
+    requirements: # ALL must be true to open the OHKO window
+      - "Attack is super-effective (type advantage per type_advantages)."
+      - "Attacker has a power edge: EITHER maturity edge (at least 1 stage higher) OR rarity edge (at least 1 tier higher)."
+      - "Move is narratively Powerful/Signature/Finisher OR the hit is a Critical."
+    roll:
+      method: "Roll d10 once when requirements are met."
+      base_chance: 1   # 1-in-10 (10%)
+      bonuses:         # Add to success target; cap total at 5-in-10 (50%)
+        maturity_gap_2: +1   # e.g., Adult vs Baby
+        rarity_gap_2: +1     # e.g., Legendary vs Common
+        apex_attacker: +1    # attacker IV = ★★★★
+        dual_resonance: +1   # BOTH matchup_resonant and task_resonant this turn
+      cap: 5  # max 5-in-10 = 50%
+      examples:
+        - "Adult Rare vs Baby Common, super-effective Powerful move, no crit: 2-in-10 (20%)."
+        - "Adult Legendary Apex vs Baby Common, crit, dual resonance: capped at 5-in-10 (50%)."
+        - "Teen vs Teen with only type advantage: no window (fails power-edge requirement)."
+    defenses:
+      defensive_tank: "If defender’s Archetype is Defensive Tank, reduce chance by 1 (to a minimum of 1-in-10 if window is open)."
+      shields_active: "If defender currently has a protective veil/ward/shield, reduce chance by 1."
+    hard_blocks:
+      immunities: "If target is immune to the attack type, no OHKO window."
+      stalwart_legend: "GM may declare certain Legendaries ‘Stalwart’ for story beats; they cannot be OHKO’d."
+    resolution:
+      on_success: "Damage ignores caps and sets defender to 0% HP (fainted)."
+      on_failure: "Resolve damage normally using caps."
+    capture_note: "A fainted foe cannot be captured this action."
+    
+  elementias:
+    kinds:
+      - "Basic Elementia"
+      - "Greater Elementia"
+    loot: "No other loot items."
+    
+    # --- Eledex Patch v1.1 (Elementia Rewards: probabilistic variant) ---
+# Drop this in your Eledex, REPLACING the existing `elementia_rewards:` block.
+
+elementia_rewards:
+  # Floors preserved from v1.0 (never award less than these).
+  baseline_floors:
+    common_capture: "+1 Basic Elementia"
+    rare_capture: "+3 Basic Elementia"
+    legendary_capture: "+1 Greater Elementia"
+
+  # New roll tables (apply one roll per successful capture).
+  # Percentages are probabilities and must sum to 1.00 per rarity.
+  variable_rewards:
+    common_capture:
+      - { chance: 0.80, reward: "+1 Basic Elementia" }
+      - { chance: 0.20, reward: "+2 Basic Elementia" }
+
+    rare_capture:
+      - { chance: 0.70, reward: "+3 Basic Elementia" }
+      - { chance: 0.20, reward: "+1 Basic Elementia +1 Greater Elementia" }
+      - { chance: 0.10, reward: "+2 Greater Elementia" }
+
+    legendary_capture:
+      - { chance: 0.60, reward: "+1 Greater Elementia" }
+      - { chance: 0.30, reward: "+2 Greater Elementia" }
+      - { chance: 0.10, reward: "+1 Greater Elementia +1 Basic Elementia" }
+
+  # Release always pays at least one tier higher than the KEEP roll outcome.
+  # (Tier order, low → high: Basic … Greater)
+  release_rules:
+    rule: "Release grants ≥1 tier higher payout than the keep-roll result."
+    examples:
+      - "If keep roll = +1 Basic → release = +1 Greater"
+      - "If keep roll = +2 Basic → release = +1 Greater"
+      - "If keep roll = +3 Basic → release = +1 Greater"
+      - "If keep roll = +1 Basic +1 Greater → release = +2 Greater"
+      - "If keep roll = +2 Greater → release = +2 Greater (or GM may allow +2 Greater +1 Basic)"
+
+  # How to roll (table-friendly; optional seed for consistency).
+  roll_method:
+    die: "Roll d100 per capture; map result to the table cumulatively (e.g., 1–80, 81–100 for Common)."
+    seed: "Optional player-declared seed or use any RNG; record result in log."
+    fallback: "If variable table is ever missing, award the baseline_floors value."
+
+  healing:
+    rules:
+      - "Elementals fully heal when returned to their Elementia."
+      - "If an elemental faints, it must rest (sit out) one battle; it then auto-recovers."
+      - "There are NO healing items."
+
+  # --- Eledex Patch v1.2 (Appraisal + Battle Clarity) ---
+
+# Instruction:
+# Every appraisal MUST be delivered inside a YAML code block.
+# Use the following template exactly (no extra sections).
+
+appraisal_template: |
+  ```yaml
+  {Emoji} {Name} — {Types}
+  IV: ★★★☆ (3-Star)
+  Maturity: Teen   # Baby | Teen | Adult
+  Rarity: Rare     # Common | Rare | Legendary
+  Archetype: "Glass Cannon"   # Species-defining battle style
+  Moves:
+    {Type Emoji} Move 1 — *flavor text*
+    {Type Emoji} Move 2 — *flavor text*
+    {Type Emoji} Move 3 — *flavor text*
+    {Type Emoji} Move 4 — *flavor text*
+
+battle_system:
+  player_control: "Players always choose their attacks, throws, and switches. GM narrates outcomes."
+  flow_priority:
+    - "1. Player Decision (attack/switch/throw)."
+    - "2. Type Chart (strong/weak/immunity)."
+    - "3. Maturity (Baby < Teen < Adult)."
+    - "4. Rarity (Common < Rare < Legendary)."
+    - "5. Archetype (species-defined battle identity)."
+    - "6. IV Stars (hidden swing factor)."
+  resolution_notes:
+    - "Type advantage = attacks hit harder, narration emphasizes dominance."
+    - "Type disadvantage = attacks struggle, narration emphasizes resistance."
+    - "Adults usually overpower teens; teens usually overpower babies (unless type/archetype flips it)."
+    - "Rares feel sharper than commons; Legendaries should always feel awe-inspiring."
+    - "Archetypes describe *how* a species fights (glass cannon, tank, trickster, support, etc)."
+    - "IV stars explain why one Pyrewing feels frailer than another — subtle, under the hood."
+
+  type_emojis:
+    Primal: "🐾"
+    Life: "🌿"
+    Water: "💧"
+    Fire: "🔥"
+    Electric: "⚡"
+    Ice: "❄️"
+    Fighting: "🥊"
+    Metallic: "⚙️"
+    Rock: "🪨"
+    Earth: "⛰️"
+    Chaos: "♟️"
+    Mystic: "🔮"
+    Mental: "⏳"
+    Psychic: "🌀"
+    Light: "🌞"
+    Dragon: "🐉"
+    Bug: "🐛"
+    Poison: "☠️"
+    Ghost: "👻"
+    Dark: "🌑"
+    Fairy: "🧚"
+    Flying: "🕊️"
+
+  # --- Eledex Patch v1.3 (Dual Resonance Bonuses & Logging) ---
+# Replace your existing `resonance_and_evolution:` and keep everything else intact.
+
+resonance_and_evolution:
+  scoring:
+    heavy: "+20 — Battle won"
+    matchup_resonant_bonus: "+20 — Bonus if your battling Elemental had a type advantage or immunity vs the foe"
+    task_resonant_bonus: "+20 — Bonus if the encounter's task category matches the Elemental's preferred types"
+    capture_legendary: "+20 — Bonus if captured Elemental was Legendary"
+    capture_standard: "+5 — Bonus for any battling Elemental if captured one was non-Legendary"
+    medium: "+10 — Battle lost or non-type-matching task completed"
+    low: "+5 — Passive party bonus per battle won"
+  reset: "Resonance Score resets to 0 immediately upon evolution."
+  # Back-compat: keep the old name recognized (maps to matchup bonus only).
+  aliases:
+    type_resonant_bonus -> matchup_resonant_bonus
+
+resonance_detection:
+  matchup_resonant:
+    rule: "TRUE if any of the user's types are in `strong_vs` or the foe is in `immune` for the user's type (per `type_advantages`)."
+    dual_type_logic:
+      user: "If user has 2 types, advantage from either counts."
+      foe: "Check advantage against each of foe's types; any advantage → TRUE."
+    ties_and_counters:
+      neutral: "No bonus."
+      foe_advantage_only: "No bonus."
+      mutual_advantage: "Still TRUE (you had advantage)."
+  task_resonant:
+    rule: "TRUE if the encounter's task category `prefer` list contains ANY of the battling Elemental's types (including either type for dual-types)."
+    examples:
+      - "Basketball_on_court prefers [Fighting, Fire, Electric, Mystic] → Mistpix (Mystic) = TRUE."
+      - "Outdoors_nature prefers [Earth, Rock, Flying, Life, Ice] → Aviorra (Life/Flying) = TRUE."
+
+eleat_patch_format:
+  # Minimal required fields so we always remember the bonuses that applied.
+  entry_template:
+    elemental: "Name"
+    iv: "★☆☆☆..★★★★"
+    resonance_score: 0
+    elementias: { Basic: 0, Greater: 0 }
+    resonance_log:
+      - task: "short description"
+        opponent: "Species"
+        used: "Your Elemental"
+        outcome: "Win | Loss | Capture | Release"
+        matchup_resonant: true
+        task_resonant: true
+        notes: "optional"
+
+notes:
+  - "Award BOTH bonuses if both conditions are TRUE (+40 total)."
+  - "Immunities count as advantage for matchup_resonant."
+  - "Keep using your existing `type_advantages` and `encounter_logic` blocks—this patch only changes how we score/log."
+  - "You can retrofit past logs by adding `matchup_resonant` and `task_resonant` booleans."
+      
+    # --- Eledex Patch v1.1 (Elementia Rewards: probabilistic variant) ---
+# Drop this in your Eledex, REPLACING the existing `elementia_rewards:` block.
+
+elementia_rewards:
+  # Floors preserved from v1.0 (never award less than these).
+  baseline_floors:
+    common_capture: "+1 Basic Elementia"
+    rare_capture: "+3 Basic Elementia"
+    legendary_capture: "+1 Greater Elementia"
+
+  # New roll tables (apply one roll per successful capture).
+  # Percentages are probabilities and must sum to 1.00 per rarity.
+  variable_rewards:
+    common_capture:
+      - { chance: 0.80, reward: "+1 Basic Elementia" }
+      - { chance: 0.20, reward: "+2 Basic Elementia" }
+
+    rare_capture:
+      - { chance: 0.70, reward: "+3 Basic Elementia" }
+      - { chance: 0.20, reward: "+1 Basic Elementia +1 Greater Elementia" }
+      - { chance: 0.10, reward: "+2 Greater Elementia" }
+
+    legendary_capture:
+      - { chance: 0.60, reward: "+1 Greater Elementia" }
+      - { chance: 0.30, reward: "+2 Greater Elementia" }
+      - { chance: 0.10, reward: "+1 Greater Elementia +1 Basic Elementia" }
+
+  # Release always pays at least one tier higher than the KEEP roll outcome.
+  # (Tier order, low → high: Basic … Greater)
+  release_rules:
+    rule: "Release grants ≥1 tier higher payout than the keep-roll result."
+    examples:
+      - "If keep roll = +1 Basic → release = +1 Greater"
+      - "If keep roll = +2 Basic → release = +1 Greater"
+      - "If keep roll = +3 Basic → release = +1 Greater"
+      - "If keep roll = +1 Basic +1 Greater → release = +2 Greater"
+      - "If keep roll = +2 Greater → release = +2 Greater (or GM may allow +2 Greater +1 Basic)"
+
+  # How to roll (table-friendly; optional seed for consistency).
+  roll_method:
+    die: "Roll d100 per capture; map result to the table cumulatively (e.g., 1–80, 81–100 for Common)."
+    seed: "Optional player-declared seed or use any RNG; record result in log."
+    fallback: "If variable table is ever missing, award the baseline_floors value."
+    
+      # Longest Evo Paths
+      Dark, Light, Fairy, Mystic, Chaos, Mental, Dragon, Primal:
+        baby_to_teen: 250
+        teen_to_adult: 550
+      # Medium Evo Paths
+      Life, Fire, Water, Fighting, Electric, Flying, Poison, Rock, Earth, Ice:
+        baby_to_teen: 175
+        teen_to_adult: 450
+      # Fastest Evo Paths
+      Psychic, Ghost, Bug:
+        baby_to_teen: 125
+        teen_to_adult: 325
+    notes:
+      - "Legendaries always begin at the Adult stage."
+      - "Rares mostly begin at Teen or Adult stage."
+      - "Commons and Starters usually begin at Baby stage."
+      - "Evolution progress is tracked solely by Resonance Score."
+      - "Resonance Accord (10th capture guarantee) operates independently of scoring."
+      - "Elementia totals are cumulative; use patch deltas for tracking."
+      # --- Eledex Patch v1.4 (Branching Evolution Rules) ---
+
+branching_evolutions:
+  rules:
+    - "All branching evolutions are resolved with dice rolls."
+    - "Canon species list order determines assignment order (top to bottom)."
+    - "Use the smallest die that fits cleanly (no rerolls)."
+    - "Once an evolution path is chosen, it is permanent."
+
+  dice_assignments:
+    2_choices: 
+      die: d2   # or coin flip
+      mapping: [1 = first listed, 2 = second listed]
+
+    3_choices: 
+      die: d3
+      mapping: [1 = first listed, 2 = second listed, 3 = third listed]
+
+    10_choices: 
+      die: d10
+      mapping: [1–10 map directly in order to listed evolutions]
+
+  species_examples:
+    - Cocrylis → [Papyris, Venymph]  # 2-branch, roll d2
+    - Grapplin → [Grapmonk, Grapape] # 2-branch, roll d2
+    - LuLu → [LuFra, LuMelie, LuKari] # 3-branch, roll d3
+    - Armling → [Gladiroll, Armaforge, Dillocore] # 3-branch, roll d3
+    - Sampup → [Samorigin, Samber, Samonic, Samaeria, Samuvolt, Samirus, Sameiodas, Samurial, Samirisai, Sambreon] # 10-branch, roll d10
+
+notes:
+  - "Branch resolution happens at the moment of evolution (when resonance threshold is reached)."
+  - "Players must physically roll the die (or coin) in front of the GM/partner to lock in path."
+  - "This ensures every branching feels fateful and story-driven, not arbitrary."
+
+  resonance_accord:
+    purpose: "Tracks a player's per-species successful captures toward the 10th-capture Apex guarantee."
+    counting:
+      includes: "All successful captures and received gifts add +1 to the species count."
+      duplicates: "Each additional capture or received gift of the same species increments the count by +1."
+      releases: "Releasing does not reduce or reset the count."
+      trades_gifts: "Original captor gains credit for their capture. Recipient also gains +1 as if they had captured the gifted Elemental themselves."
+    ownership_and_display:
+      rule: "Keep this block lean—store only species with count > 0 (no zeros)."
+      example_format:
+        Player.resonance_accord:
+          Shockowl: 2
+          Ulrich: 1
+    guarantee:
+      apex_on_10th: "➰ On a player's 10th capture of the same species, the encounter is guaranteed 🌟 Apex for that player only."
+    scope:
+      per_player: "Counts are personal and non-transferable."
+      per_species: "Tracked separately for every species."
+    notes:
+      - "Gifts add normally to the recipient’s Accord, as though they captured the species themselves."
+      - "Accord is independent of Resonance Score and evolution."
+
+  type_advantages:
+  Primal:   { strong_vs: [Life, Dragon, Electric, Metallic], weak_vs: [Mystic, Psychic, Fire, Ice], immune: [] }
+  Life:     { strong_vs: [Water, Light, Earth, Rock],       weak_vs: [Fire, Flying, Psychic, Primal], immune: [] }
+  Water:    { strong_vs: [Fire, Rock, Earth, Flying],       weak_vs: [Life, Electric],               immune: [] }
+  Fire:     { strong_vs: [Life, Ice, Bug],                   weak_vs: [Water, Rock, Earth],           immune: [] }
+  Electric: { strong_vs: [Water, Flying],                    weak_vs: [Earth, Life],                  immune: [] }
+  Ice:      { strong_vs: [Life, Earth, Flying, Dragon],      weak_vs: [Fire, Metallic, Rock],         immune: [] }
+  Fighting: { strong_vs: [Dark, Ice, Rock, Metallic],        weak_vs: [Flying, Mystic, Psychic],      immune: [] }
+  Metallic: { strong_vs: [Ice, Rock, Light],                 weak_vs: [Fire, Fighting, Earth],        immune: [Poison] }
+  Rock:     { strong_vs: [Fire, Flying, Bug, Ice],           weak_vs: [Water, Earth, Fighting, Life], immune: [] }
+  Earth:    { strong_vs: [Electric, Fire, Metallic, Poison], weak_vs: [Water, Ice, Life],             immune: [Electric] }
+  Chaos:    { strong_vs: [Mystic, Light, Psychic, Mental],   weak_vs: [Metallic, Rock, Dark],         immune: [] }
+  Mystic:   { strong_vs: [Primal, Psychic, Fairy, Dragon],   weak_vs: [Mental, Mystic, Chaos],        immune: [] }
+  Mental:   { strong_vs: [Mystic, Dragon, Poison],           weak_vs: [Chaos, Bug, Dark],             immune: [] }
+  Psychic:  { strong_vs: [Fighting, Poison, Life, Primal],   weak_vs: [Mystic, Mental, Chaos],        immune: [] }
+  Light:    { strong_vs: [Dark, Chaos],                      weak_vs: [Life, Metallic],               immune: [] }
+  Dragon:   { strong_vs: [Dragon, Life, Fire],               weak_vs: [Ice, Mystic, Mental],          immune: [] }
+  Bug:      { strong_vs: [Mental, Dark, Life],               weak_vs: [Fire, Flying, Rock],           immune: [] }
+  Poison:   { strong_vs: [Life, Fairy],                      weak_vs: [Metallic, Psychic, Earth],     immune: [] }
+  Ghost:    { strong_vs: [Mystic, Psychic, Ghost],           weak_vs: [Dark, Life],                   immune: [Normal-type equivalent (if used)] }
+  Dark:     { strong_vs: [Mystic, Mental, Ghost, Chaos],     weak_vs: [Fighting, Bug, Light],         immune: [Psychic] }
+  Fairy:    { strong_vs: [Dragon, Dark, Fighting],           weak_vs: [Mystic, Poison, Metallic],     immune: [] }
+  Flying:   { strong_vs: [Life, Fighting, Bug],              weak_vs: [Electric, Rock, Metallic, Water], immune: [Earth] }
+
+  encounter_logic:
+    matching:
+      synonyms: true   # treat close synonyms as matches (e.g., "finish" ~ "wrap", "journal" ~ "journaling")
+
+    tiers:
+      standard:
+        description: "Everyday progress tasks."
+        rarity_intent: { Common: "high", Rare: "low", Legendary: "very_low" }
+      major:
+        description: "Bigger efforts, recovery emphasis, tough sessions."
+        rarity_intent: { Common: "medium", Rare: "high", Legendary: "low" }
+      epic:
+        description: "Milestones, completed chapters, PRs, long peak workouts, breakthrough moments."
+        rarity_intent: { Common: "low", Rare: "very_high", Legendary: "high" }
+
+    large_task_detection:
+      keywords: [finish, complete, publish, win, championship, launch, milestone, breakthrough, evolve, achieve, "PR", "personal best"]
+      on_match_tier: epic
+
+    task_categorization:
+  - id: sharing_wisdom
+    keywords: [teach, coach, mentor, guide, tips, advice, lesson, training, wisdom, share, educate, knowledge]
+    prefer: [Light, Mental, Mystic]
+    tier_default: standard
+    tier_upgrades:
+      major: [session, workshop, class, group, client]
+      epic: [curriculum, program, published guide, breakthrough impact]
+
+  - id: documenting_the_quest
+    keywords: [record, photo, video, capture, document, archive, journal, vlog, content, track, curate]
+    prefer: [Metallic, Dragon, Dark]
+    tier_default: standard
+    tier_upgrades:
+      major: [album, montage, organized archive]
+      epic: [documentary, legacy record, full chronicle]
+      - id: basketball_on_court
+        keywords: [hoops, shooting, dribbling, dunk, workout, gym, scrimmage, practice]
+        prefer: [Fighting, Fire, Electric, Mystic]
+        tier_default: standard
+        tier_upgrades:
+          major: [session, intense, conditioning, recovery]
+          epic: [marathon, two-a-day, "90+ minutes", "PR"]
+
+      - id: basketball_mentality
+        keywords: [film, strategy, visualization, mindset, journaling, affirmations]
+        prefer: [Mental, Psychic, Dragon, Mystic]
+        tier_default: standard
+        tier_upgrades:
+          major: [deep dive, breakdown, study plan]
+          epic: [master plan, paradigm shift]
+
+      - id: creative_writing
+        keywords: [novel, draft, writing, outline, edit, poetry, worldbuild]
+        prefer: [Mystic, Bug]
+        tier_default: standard
+        tier_upgrades:
+          major: [long session, revision pass]
+          epic: [chapter complete, manuscript milestone, publish]
+
+      - id: spiritual_reflection
+        keywords: [prayer, bible, meditate, worship, gratitude]
+        prefer: [Light, Fairy, Flying]
+        tier_default: standard
+        tier_upgrades:
+          major: [retreat, sermon notes]
+          epic: [vow, breakthrough]
+
+      - id: household_care
+        keywords: [clean, cook, dishes, laundry, organize]
+        prefer: [Water, Life, Earth, Poison]
+        tier_default: standard
+        tier_upgrades:
+          major: [deep clean, overhaul]
+          epic: [move-out clean, renovation]
+
+      - id: study_focus
+        keywords: [study, research, read, coursework, memorize, learn]
+        prefer: [Psychic, Mental, Primal, Dragon]
+        tier_default: standard
+        tier_upgrades:
+          major: [exam prep, project]
+          epic: [degree milestone, certification]
+
+      - id: outdoors_nature
+        keywords: [walk, hike, trail, park, nature, woods]
+        prefer: [Earth, Rock, Flying, Life, Ice]
+        tier_default: standard
+        tier_upgrades:
+          major: [long hike, elevation]
+          epic: [summit, expedition]
+
+      - id: tech_systems
+        keywords: [computer, phone, cable, software, setup, debug]
+        prefer: [Metallic, Electric]
+        tier_default: standard
+        tier_upgrades:
+          major: [rebuild, migration]
+          epic: [system launch, major fix]
+
+      - id: social_service
+        keywords: [call, text, visit, community, volunteer, family, donate]
+        prefer: [Fairy, Life, Water]
+        tier_default: standard
+        tier_upgrades:
+          major: [event, fundraiser]
+          epic: [campaign milestone]
+
+      - id: wellness_mindbody
+        keywords: [stretch, breathe, recovery, sleep, hydrate, therapy, relax]
+        prefer: [Water, Ice, Life]
+        tier_default: major
+        tier_upgrades:
+          epic: [protocol complete, breakthrough session]
+
+      - id: adversity_chaos
+        keywords: [unexpected, chaos, mistake, delay, injury, obstacle]
+        prefer: [Chaos, Dark, Ghost]
+        tier_default: major
+        tier_upgrades:
+          epic: [overcome, resolve fully]
+
+      - id: competition_clutch
+        keywords: [game, match, pressure, finals, high stakes]
+        prefer: [Dragon, Fire, Dark]
+        tier_default: major
+        tier_upgrades:
+          epic: [win, clutch, championship]
+
+      - id: finance_business
+        keywords: [budget, money, brand, contract, taxes, deals]
+        prefer: [Metallic, Rock, Poison]
+        tier_default: standard
+        tier_upgrades:
+          major: [negotiation, filing]
+          epic: [contract signed, launch]
+
+      - id: transformation_tasks
+        keywords: [reinvention, growth, leveling, evolution]
+        prefer: [Bug, Fairy, Psychic]
+        tier_default: major
+        tier_upgrades:
+          epic: [rebirth, major pivot]
+
+      - id: mystery_creation
+        keywords: [story, lore, myth, design, brand]
+        prefer: [Mystic, Dark, Ghost]
+        tier_default: standard
+        tier_upgrades:
+          major: [world pass]
+          epic: [canon update]
+
+      - id: primal_training
+        keywords: [sprinting, raw, strength, survival, extreme, challenge]
+        prefer: [Primal, Fighting, Earth, Metallic]
+        tier_default: major
+        tier_upgrades:
+          epic: [PR, max-out, event]
+
+      - id: bug_tasks
+        keywords: [habit, bill, call, chores, minor, small, stack, routine, daily, micro]
+        prefer: [Bug]
+        tier_default: standard
+        tier_upgrades:
+          major: [habit streak, 7-day chain]
+          epic: [30-day streak, year mark]
+
+ # --- Combined Encounter Pool (Gen 1 + Gen 2, no duplicates, dual-types noted inline) ---
+encounter_pool:
+
+  Primal:
+    Common:    [Cubusk, Thornox, Sampup, Armling, Cubear, Finrook]
+    Rare:      [Direfang,
+                Samorigin,
+                Gladiroll  # (Primal/Fighting),
+                Armaforge  # (Primal/Metallic),
+                Dillocore  # (Primal/Earth),
+                Urstic  # (Primal/Poison),
+                Toxursus  # (Primal/Poison),
+                Jawreef  # (Primal/Metallic),
+                Sharkmarine]  # (Primal/Metallic)
+    Legendary: [Vagan]
+
+  Life:
+    Common:    [Sproutlet, Budbun, Verdurtle, Spriggle, Sapkit, Verdreep]
+    Rare:      [Virevine, Oakenox,
+                Mentortoise  # (Life/Mental),
+                Sagetalon  # (Life/Mental),
+                Florowl  # (Life/Flying),
+                Aviorra  # (Life/Flying),
+                Bloomtail,
+                Arborcolt,
+                Sylvagant,
+                Samirisai]  # Samulution
+    Legendary: [RoHi]
+
+  Water:
+    Common:    [Dripfin, Pondy, Jaydrip, Shelplash, Minnowlet, Oceapup, Kelpawk, Ampenguin] # (Electric/Ice)
+    Rare:      [Aqualope, Surfray,
+                Aquashiro  # (Water/Fighting),
+                Torravale  # (Water/Fighting),
+                Aeroterrapin  # (Water/Flying),
+                Stratosnap  # (Water/Flying),
+                Streamray,
+                Frondrak,  # (Water/Dragon)
+                Samaeria,  # Samulution
+                Frostvolt, # (Electric/Ice)
+                Glaciamp]  # (Electric/Ice)
+    Legendary: [DoAn]
+
+  Fire:
+    Common:    [Cindpup, Flameet, Cindinal, Sparkcub, Ashlet]
+    Rare:      [Pyrewing,
+                Emberslice  # (Fire/Fighting),
+                Blazearis  # (Fire/Fighting),
+                Pyraze,
+                Erupteen  # (Fire/Earth),
+                Volcanar  # (Fire/Earth),
+                Cinderdillo  # (Fire/Primal),
+                Samber]   # Samulution
+    Legendary: [Maghie, Flameira, Sungrail]  # Sungrail (Fire/Dragon)
+
+  Electric:
+    Common:    [Zirrel, Buzzy, Buzzbee, Jollet, Capacitoad, Voltrake, Ampenguin]  # Ampenguin (Electric/Ice)
+    Rare:      [Bumblebuzz, Shockowl # (Electric/Mystic), Sparkhorn, Electaclaw,
+                Ampcoon, Stormglyph # (Electric/Mystic), Omenra # (Electric/Mystic),
+                Voltike  # (Electric/Bug),
+                Surgeoad  # (Electric/Earth),
+                Stormcarve, # (Electric/Rock)
+                Samuvolt]  # Samulution
+    Legendary: [Lyhn, Voltrazen]  # (Electric/Rock)
+
+  Ice:
+    Common:    [Frostip, Chillcub, Icetwig, Crystail, Flakecub, Cryopine] # Cryopine (Ice/Life)
+    Rare:      [Glacior, Cryobat,
+                Freezling,
+                Frurstbite,
+                Shardove,   # (Ice/Flying)
+                Frospruce,  # (Ice/Life)
+                Yggdrisnow,
+                Samirus]    # Samulution
+    Legendary: [Kai, Glacierith, Cryophix] # Cryophix (Ice/Mystic)
+
+  Fighting:
+    Common:    [Punchip, Kicklet, LuLu, Pawji, Kangfist]
+    Rare:      [Grapplin, Grapmonk, Grapape,
+                LuFra,    # (Fighting/Mental)
+                LuMelie,  # (Fighting/Chaos)
+                LuKari,   # (Fighting/Poison)
+                Bruinior,
+                Blazaroo, # (Fighting/Fire)
+                Capybrawl,# (Fighting/Life)
+                Gorivine] # (Fighting/Life)
+    Legendary: [Hitmonius]
+
+  Metallic:
+    Common:    [Nutmunk, Tinwing]
+    Rare:      [Bolthog, Aurumite, Forgraffe, Samonic] # Samulution
+    Legendary: [Pobilita]
+
+  Rock:
+    Common:    [Shardling, Pebblin, Chalkhorn, Pebgrub]
+    Rare:      [Lizrupt, Obraptor,
+                Geoclaw,
+                Monolyth,
+                Basaltis,  # (Rock/Fire)
+                Shardyne]  # (Rock/Dragon)
+    Legendary: [Solytr, Auralith] # (Rock/Mystic)
+
+  Earth:
+    Common:    [Pebbluff, Moley, Mudkit, Bouldino, Mireling]  # Mireling (Poison/Earth)
+    Rare:      [Molert, Sandcrawl, Granox, Marbleox, Diamox,
+                Terrapaw,
+                Quarruk,  # (Earth/Rock)
+                Dunvark,
+                Toxodon]  # (Poison/Earth)
+    Legendary: [Bion, Terraclysm] # (Earth/Dragon)
+
+  Chaos:
+    Common:    [Umbracorn, Gloomtail, Obrum, Umbrat, Foremas] # (Chaos/Life)
+    Rare:      [Ravrak, Nyxthra,
+                Foreman,   # (Chaos/Life)
+                Foremonst, # (Chaos/Life)
+                Umbruavian] # (Chaos/Flying)
+    Legendary: [Onga]
+
+  Mystic:
+    Common:    [Orbkit, Charmora, Mistpix, Runeling, Umbranite, Mystwing] # Umbranite (Chaos/Mystic); Mystwing (Mystic/Bug)
+    Rare:      [Seeraph, Runeblade,
+                Glyphorn,
+                Denerva,   # (Chaos/Mystic)
+                Manaclaw,  # (Mystic/Fighting)
+                Runethera, # (Mystic/Bug)
+                Samurial]  # Samulution
+    Legendary: [Ebok]
+
+  Mental:
+    Common:    [Hourgoyle, Minutaur, Mindkit]
+    Rare:      [Psylinx, Chronofaun] # Psylinx (Mental/Psychic), Chronofaun (Mental/Primal)
+    Legendary: [Ulrich]
+
+  Psychic:
+    Common:    [Mindove, Psysprout]
+    Rare:      [Telelynx]
+    Legendary: [Mightaswellmiyus]
+
+  Light:
+    Common:    [Luminel, Glowfinch, Gleamfinch, Bunli, Glitterap, Haloose, Aurapix]
+    Rare:      [Aurawing, Lukita,
+                Solstrike,  # (Light/Fighting)
+                Azuribreak, # (Light/Fighting)
+                Luminhare,  # (Light/Fairy)
+                Radiantaur, # (Light/Fairy)
+                Shynx,
+                Sanctaur,   # (Light/Mystic)
+                Celestara]  # (Light/Fairy)
+    Legendary: [Azurlyon, Solchalice] # (Light/Dragon)
+
+  Dragon:
+    Common:    [Snaggon, Dracling, Wyrmlit, Komure]
+    Rare:      [Scalebean, Wyverrel,
+                Scaelix,
+                Dragalore,
+                Oboragon,
+                Serpryst,   # (Dragon/Mystic)
+                Chimerock,  # (Dragon/Rock)
+                Anachrosaur,# (Chaos/Dragon)
+                Sameiodas]  # Samulution
+    Legendary: [Dracorift, Chronog]
+
+  Bug:
+    Common:    [Grubbit, Larvane, Cocrylis]
+    Rare:      [Papyris, Venymph, Scarabyte, Webnymph]
+    Legendary: [Carapoyle, Meru]
+
+  Poison:
+    Common:    [Venipup, Toxhopper, Sludgeet, Toxsprout]
+    Rare:      [Arachnoir, Scorvile,
+                Vilevine,  # (Poison/Life)
+                Spiterra,  # (Poison/Earth)
+                Spiraleth, # (Poison/Dragon)
+                Lilithorn] # (Poison/Fairy)
+    Legendary: [Scourgebreath]
+
+  Ghost:
+    Common:    [Whispling, Lampoon, Grimghoul, Mournel] # Mournel (Ghost/Fighting)
+    Rare:      [Shadebat, Phantasmole,
+                Phantoskull,
+                Lampyre,   # (Ghost/Light)
+                Ectowl,    # (Ghost/Flying)
+                Dirgelith] # (Ghost/Fighting)
+    Legendary: [Gengimus]
+
+  Dark:
+    Common:    [Nightkit, Nocturvul, Shadeimp, Rabbti, Umbrow, Felshade, Nyxfawn]
+    Rare:      [Umbrenox, Noctalon,
+                Umbhare,   # (Dark/Ghost)
+                Nyctaur,   # (Dark/Ghost)
+                Tenebriscor, # (Dark/Chaos)
+                Umblynx,
+                Gloombreed, # (Dark/Poison)
+                Sambreon]   # Samulution
+    Legendary: [Erebos, Enderus, Umbrosith]
+
+  Fairy:
+    Common:    [Glimpuff, Swissy, Rollibun, Florique]
+    Rare:      [Sparkleap, Moonveil, Charmowl,
+                Swisstra, Gateauxra, Charmelody, Mythloom]
+    Legendary: [Icia, Solunara]
+
+  Flying:
+    Common:    [Puffjay, Zephylet]
+    Rare:      [Electaclaw, Cadiquill,
+                Aerlume,
+                Stratonis,
+                Cloudleap] # (Flying/Fighting)
+    Legendary: [Aurelios]
+
+  elementarium:
+
+  # --- Generation 1 ---
+  Fire: [Cindpup, Flameet, Pyrewing, Maghie]
+  Life: [Sproutlet, Budbun, Virevine, Oakenox, RoHi]
+  Mental: [Hourgoyle, Minutaur, Ulrich]
+  Mystic: [Orbkit, Charmora, Mistpix, Seeraph, Runeblade, Ebok]
+  Chaos: [Umbracorn, Gloomtail, Obrum, Umbrat, Ravrak, Nyxthra, Onga]
+  Primal: [Cubusk, Thornox, Direfang, Vagan]
+  Psychic: [Mindove, Psysprout, Telelynx, Mightaswellmiyus]
+  Metallic: [Nutmunk, Tinwing, Bolthog, Aurumite, Forgraffe, Pobilita]
+  Flying: [Puffjay, Electaclaw, Cadiquill, Aurelios]
+  Water: [Dripfin, Pondy, Aqualope, Surfray, DoAn]
+  Electric: [Zirrel, "Buzzy → Buzzbee → Bumblebuzz", Shockowl → Stormglyph → Omenra, Sparkhorn, Lyhn]
+  Earth: [Pebbluff, "Moley → Molert → Molman", Sandcrawl, "Granox → Marbleox → Diamox", Bion]
+  Rock: [Shardling, Pebblin, Chalkhorn, Lizrupt, Obraptor, Solytr]
+  Ice: [Frostip, Chillcub, Icetwig, Glacior, Cryobat, Kai]
+  Bug: [Grubbit, Larvane, "Cocrylis → Papyris / Venymph", Scarabyte, Webnymph, Carapoyle, Meru]
+  Fighting: [Punchip, Kicklet, "Grapplin → Grapmonk / Grapape", Hitmonius]
+  Poison: [Venipup, Toxhopper, Sludgeet, Arachnoir, Scorvile, Scourgebreath]
+  Dragon: [Snaggon, Dracling, Scalebean, Wyverrel, Dracorift, Chronog]
+  Fairy: [Glimpuff, Swissy, Sparkleap, Moonveil, Charmowl, Icia]
+  Ghost: [Whispling, Lampoon, Shadebat, Phantasmole, Gengimus]
+  Light: [Luminel, Glowfinch, Aurawing, Azurlyon, Lukita]
+  Dark: ["Nightkit → Nocturvul", Shadeimp, Umbrenox, Noctalon, Erebos, Enderus]
+
+
+  # --- Generation 2 ---
+  Primal:
+    - "Sampup → Samorigin"
+    - "Sampup → Samber"
+    - "Sampup → Samonic"
+    - "Sampup → Samaeria"
+    - "Sampup → Samuvolt"
+    - "Sampup → Samirus"
+    - "Sampup → Sameiodas"
+    - "Sampup → Samurial"
+    - "Sampup → Samirisai"
+    - "Sampup → Sambreon"
+    - "Armling → Gladiroll"
+    - "Armling → Armaforge"
+    - "Armling → Dillocore"
+    - "Cubear → Urstic → Toxursus"
+    - "Finrook → Jawreef → Sharkmarine"
+
+  Life:
+    - "Verdurtle → Mentortoise → Sagetalon"
+    - "Spriggle → Florowl → Aviorra"
+    - Sapkit
+    - Bloomtail
+    - "Verdreep → Arborcolt → Sylvagant"
+
+  Water:
+    - "Jaydrip → Aquashiro → Torravale"
+    - "Shelplash → Aeroterrapin → Stratosnap"
+    - "Minnowlet → Streamray"
+    - Oceapup
+    - "Kelpawk → Frondrak"
+    - "Ampenguin → Frostvolt → Glaciamp"
+
+  Fire:
+    - "Cindinal → Emberslice → Blazearis"
+    - "Sparkcub → Pyraze"
+    - "Ashlet → Erupteen → Volcanar"
+    - Cinderdillo
+
+  Light:
+    - "Gleamfinch → Solstrike → Azuribreak"
+    - "Bunli → Luminhare → Radiantaur"
+    - "Glitterap (kitten) → Shynx"
+    - "Haloose → Sanctaur"
+    - "Aurapix → Celestara"
+
+  Dark:
+    - "Rabbti → Umbhare → Nyctaur"
+    - "Umbrow → Tenebriscor"
+    - "Felshade → Umblynx"
+    - Gloombreed
+    - Nyxfawn
+
+  Electric:
+    - "Jollet → Ampcoon"
+    - Voltike
+    - "Capacitoad → Surgeoad"
+    - "Voltrake → Stormcarve"
+    - Voltrazen (Legendary, Electric/Rock)
+
+  Ice:
+    - Crystail
+    - "Flakecub → Freezling → Frurstbite"
+    - Shardove
+    - "Cryopine → Frospruce → Yggdrisnow"
+    - Glacierith (Legendary, Ice/Dragon)
+    - Cryophix (Legendary, Ice/Mystic)
+
+  Dragon:
+    - "Wyrmlit → Scaelix → Dragalore"
+    - "Komure → Oboragon"
+    - Serpryst
+    - Chimerock
+    - Anachrosaur
+    - Terraclysm (Legendary, Earth/Dragon)
+    - Sungrail (Legendary, Light/Dragon)
+    - Solchalice (Legendary, Light/Dragon)
+
+  Ghost:
+    - Lampyre
+    - "Grimghoul → Phantoskull"
+    - Ectowl
+    - "Mournel → Dirgelith"
+    - Umbrosith (Legendary, Dark/Ghost)
+
+  Mystic:
+    - "Umbranite → Denerva"
+    - "Runeling → Glyphorn"
+    - Manaclaw
+    - "Mystwing → Runethera"
+    - Auralith (Legendary, Rock/Mystic)
+
+  Mental:
+    - "Mindkit → Psylinx"
+    - Chronofaun
+
+  Chaos:
+    - "Foremas → Foreman → Foremonst"
+    - Umbruavian
+
+  Earth:
+    - "Mudkit → Terrapaw"
+    - "Bouldino → Quarruk"
+    - Dunvark
+    - "Mireling → Toxodon"
+
+  Rock:
+    - "Pebgrub → Geoclaw → Monolyth"
+    - Basaltis
+    - Shardyne
+
+  Poison:
+    - "Toxsprout → Vilevine"
+    - Spiterra
+    - Spiraleth
+    - Lilithorn
+
+  Fighting:
+    - "LuLu → LuFra"
+    - "LuLu → LuMelie"
+    - "LuLu → LuKari"
+    - "Pawji → Bruinior"
+    - "Kangfist → Blazaroo"
+    - Capybrawl
+    - Gorivine
+
+  Flying:
+    - "Zephylet → Aerlume → Stratonis"
+    - Cloudleap
+    - Misquill
+
+  Fairy:
+    - "Rollibun → Swisstra → Gateauxra"
+    - Charmelody
+    - Florique
+    - Mythloom
+
+  Legendary (extra listed):
+    - Solunara (Fairy/Light)
+    - Terraclysm (Earth/Dragon)
+    - Cryophix (Ice/Mystic)
+    - Voltrazen (Electric/Rock)
+    - Umbrosith (Dark/Ghost)
+    - Auralith (Rock/Mystic)
+    - Flameira (Fire/Psychic)
+    - Glacierith (Ice/Dragon)
+    - Sungrail (Fire/Dragon)
+    - Solchalice (Light/Dragon)

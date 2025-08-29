@@ -1,0 +1,265 @@
+# ======================================================================
+# File: Party Log — luminouslusia777.yaml
+# Purpose: Player save file (authoritative). Overwrite this file with
+#          each new snapshot I generate after changes.
+# Last Updated: 2025-08-29T00:00:00Z
+# ======================================================================
+
+meta:
+  game: "Elementals: Collecting the Experience of Life"
+  version: 1.0
+  player: "luminouslusia777"
+  canon_reference_file: "Eledex Master File"
+
+player_profile_display:
+  username: "luminouslusia777"
+  elementia:
+    basic: 29
+    greater: 7
+  evolution_watch:   # 3 closest (excluding Adults)
+    - "Frospruce — 220"
+    - "Runeblade — 110"
+    - "Budbun — 90"
+  highest_accord:
+    species: "Frospruce"
+    count: 2
+
+player_data_full:
+  username: "luminouslusia777"
+  elementia:
+    basic: 29
+    greater: 7
+  resonance_scores:
+    Budbun: 90
+    Dripfin: 90
+    Pyrewing: 90
+    Oakenox: 45
+    Runeblade: 110
+    Frospruce: 220
+  resonance_accord:
+    Shockowl: 1
+    Dripfin: 1
+    Pyrewing: 1
+    Oakenox: 1
+    Psysprout: 1
+    Budbun: 1
+    Runeblade: 1
+    Frospruce: 2
+    Steamray: 1
+
+roster:
+  - name: "Budbun"
+    typing: ["Life"]
+    iv: "🌟 ★★★★ (Apex)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Supportive Healer (bulky, resonance-focused, low offense)"
+    moves:
+      - "🌿 Bloom Pulse — powerful burst of floral energy to heal or strike"
+      - "🌿 Leaf Nibble — quick gnaw with leaves, chance for multi-hit damage"
+      - "🌿 Root Bind — ensnares opponent with roots, minor damage and trap"
+      - "🌿 Nature’s Veil — protective shroud that boosts resonance"
+
+  - name: "Dripfin"
+    typing: ["Water"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Agile Harasser (speedy, chip damage, evasive)"
+    moves:
+      - "💧 Aqua Jolt — sudden blast of charged water to shock foe"
+      - "💧 Wave Dash — swift water surge, dashing strike"
+      - "💧 Soak Veil — reduces damage by cloaking in spray"
+      - "💧 Tail Slap — quick strike with fin"
+
+  - name: "Pyrewing"
+    typing: ["Fire","Flying"]
+    iv: "★★☆☆ (2-Star)"
+    maturity: "Teen"
+    rarity: "Rare"
+    archetype: "Glass Cannon (high burst offense, fragile)"
+    moves:
+      - "🔥 Ember Gale — sweeping fiery gust"
+      - "🕊️ Sky Lunge — dive attack dealing solid damage"
+      - "🔥 Flame Shroud — burning aura, chip damage to foes"
+      - "🕊️ Wingbeat Crash — reckless wing slam"
+
+  - name: "PsySprout"
+    typing: ["Psychic","Life"]
+    iv: "★★☆☆ (2-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Strategist (balanced, resonance/utility leaning)"
+    moves:
+      - "🌀 Mind Spore — mental seeds disrupt foe’s focus"
+      - "🌿 Bloom Pulse — floral energy burst"
+      - "🌀 Psybeam — psychic ray that deals solid damage"
+      - "🌿 Sprout Shield — defensive shield from sprouting vines"
+
+  - name: "Shockowl"
+    typing: ["Electric","Mystic"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Baby"
+    rarity: "Rare"
+    archetype: "Arcane Striker (unpredictable mix of speed + power)"
+    moves:
+      - "⚡ Arc Shock — mystic-charged lightning blast"
+      - "🔮 Spellfeather — owl’s wing creates magical glyph strikes"
+      - "⚡ Volt Dive — high-speed electric dive"
+      - "🔮 Arcane Echo — resonant shockwave of mystic power"
+
+  - name: "Oakenox"
+    typing: ["Life","Earth"]
+    iv: "🌟 ★★★★ (Apex)"
+    maturity: "Adult"
+    rarity: "Rare"
+    archetype: "Defensive Tank (high endurance, slower but reliable)"
+    moves:
+      - "🌿 Horn Bloom — powerful horn-driven life attack"
+      - "⛰️ Boulder Crash — massive earth-slam"
+      - "🌿 Regrowth — restores endurance slowly"
+      - "⛰️ Earthbind — roots + rocks immobilize foe"
+
+  - name: "Runeblade"
+    typing: ["Mystic","Metallic"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Teen"
+    rarity: "Rare"
+    archetype: "Runic Warrior (balanced bruiser with scaling power)"
+    moves:
+      - "⚙️ Rune Slash — metal-edged mystic strike"
+      - "🔮 Sigil Surge — resonance glyph that explodes"
+      - "⚙️ Guard Etch — etched armor boosts defense"
+      - "🔮 Resonant Blade — blade hums with mystic force"
+
+  - name: "Capybrawl"
+    typing: ["Fighting","Life"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Adult"
+    rarity: "Rare"
+    archetype: "Brawler Guardian (steady frontline fighter with resilience)"
+    moves:
+      - "🥊 Fist Barrage — flurry of quick strikes"
+      - "🌿 Verdant Smash — life-charged body blow"
+      - "🥊 Grapple Hold — locks opponent down"
+      - "🌿 Guardian Roar — life aura shields allies"
+
+  - name: "Frospruce"
+    typing: ["Ice","Life"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Teen"
+    rarity: "Rare"
+    archetype: "Seasonal Protector (balanced defender, strong against some matchups)"
+    moves:
+      - "❄️ Frost Shards — razor ice fragments"
+      - "🌿 Pine Fang — vine-wrapped bite attack"
+      - "❄️ Cold Snap — sudden wave of chilling air"
+      - "🌿 Sap Surge — healing life-energy pulse"
+
+  - name: "Steamray"
+    typing: ["Water"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Adult"
+    rarity: "Rare"
+    archetype: "Flow Fighter (steady midline attacker, endurance through fluid motion)"
+    moves:
+      - "💧 Aqua Slice — sharp fin of water"
+      - "💧 Pressure Jet — concentrated blast of steam-water"
+      - "💧 Ebb Strike — uses flow to stagger foe"
+      - "💧 Mist Shroud — camouflage in watery veil"
+
+  - name: "Venipup"
+    typing: ["Poison"]
+    iv: "★★☆☆ (2-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Sneaky Status Inflictor (fragile, specializes in debuffs/attrition)"
+    moves:
+      - "☠️ Venom Fang — toxic bite"
+      - "☠️ Sludge Drip — slow poison spread"
+      - "☠️ Toxin Veil — reduces enemy accuracy"
+      - "☠️ Corrode — weakens enemy defense over time"
+
+  - name: "Aqualope"
+    typing: ["Water"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Teen"
+    rarity: "Rare"
+    archetype: "Wave Charger (nimble, fast-charging water attacker)"
+    moves:
+      - "💧 Aqua Horn — horn-first rushing strike powered by water"
+      - "💧 Tide Dash — quick dash cloaked in water spray"
+      - "💧 Hydro Kick — rear legs kick with surging splash"
+      - "💧 Flow Guard — watery barrier reduces incoming damage"
+
+  - name: "Minnowlet"
+    typing: ["Water"]
+    iv: "★★☆☆ (2-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Ripple Dart (speedy but fragile water-type chipper)"
+    moves:
+      - "💧 Bubble Jet — rapid stream of bubbles to stagger foes"
+      - "💧 Tail Flick — quick evasive strike with fin"
+      - "💧 Ripple Veil — creates watery shimmer to blur movements"
+      - "💧 Soak Splash — minor water burst to soften target"
+
+  - name: "Aviorra"
+    typing: ["Life","Flying"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Adult"
+    rarity: "Rare"
+    archetype: "Noble Defender (balanced, aerial support/defense hybrid)"
+    moves:
+      - "🕊️ Sky Guard — aerial shield"
+      - "🌿 Verdant Wing — life energy imbued strike"
+      - "🕊️ Dive Clash — aerial collision"
+      - "🌿 Growth Song — heals allies slightly"
+
+  - name: "Samuvolt"
+    typing: ["Electric"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Adult"
+    rarity: "Rare"
+    archetype: "Volt Disciple (disciplined striker, precise surges of electricity)"
+    moves:
+      - "⚡ Surge Strike — focused jolt delivered at high speed"
+      - "⚡ Static Field — electric aura that slows and shocks foes"
+      - "⚡ Lightning Dash — high-speed charge cloaked in electricity"
+      - "⚡ Thunder Seal — resonant electric strike with lasting impact"
+
+  - name: "Verdreep"
+    typing: ["Life"]
+    iv: "★★☆☆ (2-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Budding Sprout (frail but growth-focused, thrives with allies)"
+    moves:
+      - "🌿 Leaf Snap — snaps small leaves at foe, quick strike"
+      - "🌿 Sap Pulse — restores a bit of energy"
+      - "🌿 Vine Whip — lashing vines deal damage"
+      - "🌿 Sprout Guard — creates a temporary life barrier"
+
+  - name: "Charmowl"
+    typing: ["Fairy"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Teen"
+    rarity: "Rare"
+    archetype: "Enchanted Guide (balanced, blends offense with protective magic)"
+    moves:
+      - "🧚 Gleam Wing — shimmering wingbeat scatters radiant dust"
+      - "🧚 Heartcall — soothing cry that restores minor endurance"
+      - "🧚 Twilight Peck — enchanted strike imbued with fairy magic"
+      - "🧚 Aura Shield — protective barrier of shimmering light"
+
+  - name: "Swissy"
+    typing: ["Fairy"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Sweet Trickster (fragile but evasive, distracts foes with charm)"
+    moves:
+      - "🧚 Sugar Puff — fluffy burst of sweet energy"
+      - "🧚 Roll Dash — playful tumble into the foe"
+      - "🧚 Charm Veil — glittery aura lowers foe’s will to strike"
+      - "🧚 Spiral Gleam — twirling fairy light attack"
