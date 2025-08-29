@@ -1,0 +1,126 @@
+# ======================================================================
+# File: Party Log — MarloD13.yaml
+# Purpose: Player save file (authoritative). Overwrite this file with
+#          each new snapshot I generate after changes.
+# Updated: 2025-08-29T08:10:00Z
+# ======================================================================
+
+meta:
+  game: "Elementals: Collecting the Experience of Life"
+  version: 1.0
+  player: "MarloD13"
+  canon_reference_file: "Eledex Master File"
+
+player_profile_display:
+  username: "MarloD13"
+  elementia:
+    basic: 3
+    greater: 2
+  evolution_watch:   # 3 closest (excluding Adults)
+    - "Mistpix — 240 / 250"
+    - "Kicklet — 110 / 125"
+    - "Nightkit — 0 / 125"
+  highest_accord:
+    species: "Basaltis"
+    count: 1
+
+player_data_full:
+  username: "MarloD13"
+  elementia:
+    basic: 3
+    greater: 2
+  resonance_scores:
+    Mistpix: 240
+    Kicklet: 110
+  resonance_accord:
+    Basaltis: 1
+    Shockowl: 1
+    Kicklet: 1
+    Nightkit: 1
+    Gloomtail: 1
+    Spriggan: 1
+
+roster:
+  - name: "Mistpix"
+    typing: ["Mystic"]
+    iv: "🌟 ★★★★ (Apex)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Elusive Trickster (specializes in dodging + resonance tricks)"
+    moves:
+      - "🔮 Mystic Pulse — core mystic attack"
+      - "🔮 Phantasmal Gleam — flashy illusory strike"
+      - "🔮 Flicker Veil — evasive dodge move"
+      - "🔮 Rune Toss — trickster’s attack glyph"
+
+  - name: "Basaltis"
+    typing: ["Rock","Fire"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Teen"
+    rarity: "Rare"
+    archetype: "Molten Juggernaut (slow, unyielding, erupts with fiery bursts)"
+    moves:
+      - "🪨 Crag Slam — crushing stone strike"
+      - "🔥 Magma Roar — molten blast of heat"
+      - "🪨 Obsidian Wall — jagged rock barrier"
+      - "🔥 Eruption Surge — unstable fiery explosion"
+
+  - name: "Shockowl"
+    typing: ["Electric","Mystic"]
+    iv: "★★☆☆ (2-Star)"
+    maturity: "Baby"
+    rarity: "Rare"
+    archetype: "Arcane Striker (unpredictable mix of speed + power)"
+    moves:
+      - "⚡ Arc Shock — mystic-charged lightning blast"
+      - "🔮 Spellfeather — owl’s wing creates magical glyph strikes"
+      - "⚡ Volt Dive — high-speed electric dive"
+      - "🔮 Arcane Echo — resonant shockwave of mystic power"
+
+  - name: "Kicklet"
+    typing: ["Fighting"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Agile Scrapper (nimble fighter, chip damage with burst combos)"
+    moves:
+      - "🥊 Jab Flurry — quick multi-hit strike"
+      - "🥊 Roundhouse Snap — sharp spinning kick"
+      - "🥊 Guard Stance — defensive posture, reduces incoming damage"
+      - "🥊 Momentum Crash — reckless forward strike"
+
+  - name: "Nightkit"
+    typing: ["Dark"]
+    iv: "★★☆☆ (2-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Shadow Cub (mischievous ambusher, thrives in low light)"
+    moves:
+      - "🌑 Prowl Bite — quick shadowy bite"
+      - "🌑 Umbral Step — dart into dim light, evasive move"
+      - "🌑 Dread Whisk — eerie tail swipe"
+      - "🌑 Moon Gaze — unsettling stare that lowers foe’s focus"
+
+  - name: "Gloomtail"
+    typing: ["Chaos"]
+    iv: "★★★☆ (3-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Unstable Striker (swingy, random damage spikes)"
+    moves:
+      - "♟️ Chaos Lash — randomly strong tail strike"
+      - "♟️ Instability Surge — sudden random boost"
+      - "♟️ Wild Bite — chaotic gnash"
+      - "♟️ Reality Flicker — can confuse foes"
+
+  - name: "Spriggan"
+    typing: ["Earth","Life"]
+    iv: "★★☆☆ (2-Star)"
+    maturity: "Baby"
+    rarity: "Common"
+    archetype: "Rooted Guardian (defensive, draws strength from the soil)"
+    moves:
+      - "⛰️ Pebble Bash — tosses small stones"
+      - "🌱 Root Bind — tangles foe with sprouting roots"
+      - "⛰️ Harden Carapace — boosts defense with earthen shell"
+      - "🌱 Verdant Pulse — life energy burst, weak healing"
